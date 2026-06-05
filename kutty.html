@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kutty Minds - Brain Work Toys for Children</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF5A5F;
+            /* Soft Red/Pink */
+            --primary-hover: #ff474d;
+            --secondary: #087E8B;
+            /* Deep Teal */
+            --secondary-hover: #076d78;
+            --accent: #FFC436;
+            /* Playful Yellow */
+            --accent-hover: #eebb20;
+            --dark: #2F3542;
+            --light: #F7F9FC;
+            --white: #FFFFFF;
+            --gray: #A4B0BE;
+            --light-gray: #dfe4ea;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 6px 15px rgba(255, 90, 95, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 90, 95, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 6px 15px rgba(8, 126, 139, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(8, 126, 139, 0.4);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--dark);
+            box-shadow: 0 6px 15px rgba(255, 196, 54, 0.3);
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: var(--accent);
+            color: var(--dark);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            transform: rotate(-5deg);
+            box-shadow: 3px 3px 0 var(--primary);
+        }
+
+        .logo>span {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 16px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--primary);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--primary);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            background: var(--primary);
+            color: white;
+            font-size: 12px;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: 2px solid white;
+            font-weight: 900;
+            transition: transform 0.2s;
+        }
+
+        .cart-badge.bounce {
+            animation: badgeBounce 0.3s ease;
+        }
+
+        @keyframes badgeBounce {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* CART DRAWER */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(47, 53, 66, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 420px;
+            max-width: 100vw;
+            height: 100vh;
+            background: var(--white);
+            z-index: 600;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+            transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            border-bottom: 2px solid var(--light-gray);
+            flex-shrink: 0;
+        }
+
+        .cart-drawer-header h2 {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-drawer-header h2 i {
+            color: var(--primary);
+        }
+
+        .cart-drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 30px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+        }
+
+        .cart-empty i {
+            font-size: 60px;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .cart-empty p {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .cart-item-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: var(--light);
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 800;
+            font-size: 15px;
+            color: var(--dark);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .cart-item-price {
+            font-size: 16px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: 2px solid var(--light-gray);
+            background: var(--light);
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            color: var(--dark);
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .qty-num {
+            font-weight: 900;
+            font-size: 16px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            transition: var(--transition);
+        }
+
+        .cart-item-remove:hover {
+            color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .cart-drawer-footer {
+            padding: 20px 30px 30px;
+            border-top: 2px solid var(--light-gray);
+            flex-shrink: 0;
+            background: var(--white);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-total-label {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gray);
+        }
+
+        .cart-total-amount {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--dark);
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            padding: 16px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ebe5d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+        }
+
+        .btn-whatsapp i {
+            font-size: 22px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            padding: 80px 0 100px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e0f7fa 0%, #fff8e1 100%);
+        }
+
+        .hero-blob {
+            position: absolute;
+            right: -10%;
+            top: -20%;
+            width: 50%;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 58px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-text h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: var(--accent);
+            opacity: 0.5;
+            z-index: -1;
+            transform: rotate(-2deg);
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            color: var(--dark);
+            opacity: 0.8;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-img {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            margin-left: auto;
+            border-radius: 30px;
+            transform: rotate(3deg);
+            transition: var(--transition);
+            box-shadow: -15px 15px 0 var(--accent);
+        }
+
+        .hero-img img:hover {
+            transform: rotate(0deg) translateY(-10px);
+        }
+
+        /* SECTION TITLES */
+        .section-title {
+            text-align: center;
+            margin: 80px 0 50px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--dark);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 6px;
+            background: var(--secondary);
+            border-radius: 10px;
+        }
+
+
+
+        /* PRODUCTS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            padding-bottom: 80px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .product-img {
+            height: 240px;
+            background: var(--light);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.08);
+        }
+
+        .product-info h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+
+        .product-cat-label {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .add-cart-btn {
+            background: var(--light);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--dark);
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-cart-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(10deg);
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 24px;
+            color: var(--gray);
+            font-weight: 800;
+        }
+
+        .empty-state p {
+            color: var(--gray);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-text {
+            opacity: 0.7;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* ADMIN PANEL LAYOUT */
+        #admin-view {
+            min-height: 80vh;
+            padding: 40px 0;
+            background: var(--light);
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .admin-header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--dark);
+        }
+
+        .admin-header p {
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .admin-container {
+            display: flex;
+            gap: 40px;
+        }
+
+        /* Admin Sidebar */
+        .admin-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .admin-menu {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+
+        .admin-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 800;
+            color: var(--gray);
+            transition: var(--transition);
+            margin-bottom: 5px;
+        }
+
+        .admin-menu-item i {
+            font-size: 20px;
+        }
+
+        .admin-menu-item:hover,
+        .admin-menu-item.active {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .admin-menu-item.active {
+            background: rgba(255, 90, 95, 0.1);
+        }
+
+        /* Admin Content */
+        .admin-content {
+            flex: 1;
+        }
+
+        .admin-panel {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--light-gray);
+        }
+
+        .panel-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        /* Data Table */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 0 20px 10px;
+            color: var(--gray);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .data-table td {
+            background: var(--light);
+            padding: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .data-table tr td:first-child {
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+        }
+
+        .data-table tr td:last-child {
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+        }
+
+        .data-table img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .action-cell {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .btn-edit {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-delete {
+            background: var(--primary);
+        }
+
+        .btn-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Form / Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(47, 53, 66, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header h3 {
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-size: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 2px solid var(--light-gray);
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            transition: var(--transition);
+            outline: none;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            background: var(--white);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            font-size: 20px;
+            color: var(--secondary);
+        }
+
+        .toast.error i {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin: 0 auto;
+            }
+
+            .hero-img {
+                width: 80%;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .admin-container {
+                flex-direction: column;
+            }
+
+            .admin-sidebar {
+                width: 100%;
+                position: static;
+            }
+
+            .admin-menu {
+                display: flex;
+                overflow-x: auto;
+                padding: 10px;
+                border-radius: 15px;
+            }
+
+            .admin-menu-item {
+                white-space: nowrap;
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav {
+                padding: 10px 0;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="container nav-content">
+            <div style="position: relative; display: flex; align-items: center;">
+                <a href="#home" class="logo" onclick="app.navigate('home')">
+                    <img src="logo.png" alt="Kutty Minds Logo" style="height: 60px;">
+                    <span
+                        style="font-size: 26px; font-weight: 900; background: linear-gradient(135deg, #FF5A5F, #087E8B); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Kutty
+                        Minds</span>
+                </a>
+                <a href="#admin" onclick="app.navigate('admin')"
+                    style="position: absolute; right: -30px; top: 0; width: 30px; height: 100%; cursor: default; opacity: 0;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active" onclick="app.navigate('home')">Home</a></li>
+                <li><a href="#shop" class="nav-link" onclick="app.scrollToShop()">Shop Toys</a></li>
+
+                <li>
+                    <a onclick="app.openCart()" style="cursor:pointer;">
+                        <i class="fa-solid fa-cart-shopping cart-icon" id="cart-icon-btn">
+                            <span class="cart-badge" id="cart-badge">0</span>
+                        </i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CART OVERLAY -->
+    <div class="cart-overlay" id="cart-overlay" onclick="app.closeCart()"></div>
+
+    <!-- CART DRAWER -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-drawer-header">
+            <h2><i class="fa-solid fa-cart-shopping"></i> Your Cart</h2>
+            <button class="close-btn" onclick="app.closeCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-drawer-body" id="cart-drawer-body">
+            <!-- Cart items injected here -->
+        </div>
+        <div class="cart-drawer-footer" id="cart-drawer-footer" style="display:none;">
+            <div class="cart-total-row">
+                <span class="cart-total-label">Total</span>
+                <span class="cart-total-amount" id="cart-total">₹0</span>
+            </div>
+            <button class="btn-whatsapp" onclick="app.checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i>
+                Order via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- STOREFRONT VIEW -->
+    <div id="storefront-view">
+        <!-- Hero Section -->
+        <section class="hero">
+            <svg class="hero-blob" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="var(--primary)"
+                    d="M42.5,-61.1C55.2,-48.5,65.6,-34.5,70.9,-18.2C76.2,-1.9,76.5,16.7,69.5,32.3C62.5,47.9,48.2,60.5,32.3,67.8C16.4,75.1,-1.2,77,-16.9,72.9C-32.6,68.8,-46.3,58.8,-57.8,45.5C-69.3,32.2,-78.5,16.1,-77.8,0.4C-77,-15.3,-66.2,-30.7,-53.4,-42.6C-40.6,-54.5,-25.8,-63,-9.6,-62.7C6.6,-62.4,29.8,-73.7,42.5,-61.1Z"
+                    transform="translate(250 250) scale(1.2)" />
+            </svg>
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Develop Young <br><span>Minds</span> Through Play</h1>
+                    <p>Discover our curated collection of brain work and educational toys designed to boost cognitive
+                        skills, creativity, and problem-solving in children.</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-primary" onclick="app.scrollToShop()">Shop Collection</button>
+                        <button class="btn btn-accent" onclick="app.scrollToShop()">Find by Age Guide</button>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <img id="hero-banner-img"
+                        src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Happy child playing with educational toys" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Shop Area -->
+        <div class="container" id="shop-section">
+            <div class="section-title">
+            </div>
+
+            <div class="section-title">
+                <h2>Featured Brain Toys</h2>
+            </div>
+
+            <div class="products-grid" id="frontend-products">
+                <!-- Products will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN VIEW -->
+    <div id="admin-view" class="hidden">
+        <div class="container">
+            <div class="admin-header">
+                <h1>Kutty Minds Admin Dashboard</h1>
+                <p>Manage your inventory and categories</p>
+            </div>
+
+            <div class="admin-container">
+                <!-- Sidebar -->
+                <div class="admin-sidebar">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <img src="logo.png" alt="Kutty Minds Admin Logo"
+                            style="max-height: 80px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05));">
+                    </div>
+                    <div class="admin-menu">
+                        <div class="admin-menu-item active" onclick="app.switchAdminTab('products', this)">
+                            <i class="fa-solid fa-box-open"></i> Manage Products
+                        </div>
+                        <div class="admin-menu-item" onclick="app.switchAdminTab('categories', this)">
+                            <i class="fa-solid fa-tags"></i> Manage Categories
+                        </div>
+                        <div class="admin-menu-item" onclick="app.switchAdminTab('settings', this)">
+                            <i class="fa-solid fa-image"></i> Manage Advertisement
+                        </div>
+                        <div class="admin-menu-item" style="color: var(--primary); margin-top: 30px"
+                            onclick="app.navigate('home')">
+                            <i class="fa-solid fa-arrow-left"></i> Back to Store
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="admin-content">
+
+                    <!-- Products Panel -->
+                    <div id="panel-products" class="admin-panel active">
+                        <div class="panel-header">
+                            <h2>Products Inventory</h2>
+                            <button class="btn btn-primary" onclick="app.openModal('product-modal', 'add')">
+                                <i class="fa-solid fa-plus"></i> Add Product
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Details</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-products-table">
+                                    <!-- Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Categories Panel -->
+                    <div id="panel-categories" class="admin-panel">
+                        <div class="panel-header">
+                            <h2>Store Categories</h2>
+                            <button class="btn btn-secondary" onclick="app.openModal('category-modal', 'add')">
+                                <i class="fa-solid fa-plus"></i> Add Category
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Icon & Name</th>
+                                        <th>Type</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-categories-table">
+                                    <!-- Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Settings Panel -->
+                    <div id="panel-settings" class="admin-panel">
+                        <div class="panel-header">
+                            <h2>Advertisement Settings</h2>
+                        </div>
+                        <div class="form-group">
+                            <label>Hero Banner Image URL</label>
+                            <input type="text" id="advertisement-url" class="form-control"
+                                placeholder="https://example.com/banner.jpg or local image path">
+                            <p style="font-size: 12px; color: var(--gray); margin-top: 8px;">Enter an image URL or local
+                                path (like <code>advertisement.png</code>) to update the storefront banner photo.</p>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="app.saveAdvertisement()">Save
+                                Photo</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                <img src="logo.png" alt="Kutty Minds Logo" style="height: 60px;">
+                <span style="font-size: 28px; font-weight: 900; color: var(--accent);">Kutty Minds</span>
+            </div>
+            <p class="footer-text">Empowering kids through brain work toys and educational development.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <p style="margin-top: 30px; font-size: 13px; opacity: 0.4; font-weight: 600;">
+                © 2025 Kutty Minds. All rights reserved.
+                <a onclick="app.navigate('admin')" href="#admin"
+                    style="color: inherit; text-decoration: none; margin-left: 10px; opacity: 0.4; cursor: default;">
+                    <i class="fa-solid fa-lock" style="font-size: 11px;"></i>
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="product-modal-title">Add New Product</h3>
+                <button class="close-btn" onclick="app.closeModal('product-modal')"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="product-form" onsubmit="event.preventDefault(); app.saveProduct();">
+                <input type="hidden" id="product-id">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="product-name" class="form-control" placeholder="e.g. Wooden Pattern Blocks"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Price (₹)</label>
+                    <input type="number" id="product-price" class="form-control" placeholder="499" required min="0">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="product-category" class="form-control" required>
+                        <!-- Dynamic Options -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="product-image" class="form-control"
+                        placeholder="https://example.com/image.jpg" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn" style="background:var(--light-gray); color:var(--dark);"
+                        onclick="app.closeModal('product-modal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div class="modal" id="category-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="category-modal-title">Add New Category</h3>
+                <button class="close-btn" onclick="app.closeModal('category-modal')"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="category-form" onsubmit="event.preventDefault(); app.saveCategory();">
+                <input type="hidden" id="category-id">
+                <div class="form-group">
+                    <label>Category Name</label>
+                    <input type="text" id="category-name" class="form-control" placeholder="e.g. Brain Teasers"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>FontAwesome Icon Class (Optional)</label>
+                    <input type="text" id="category-icon" class="form-control" placeholder="fa-puzzle-piece"
+                        value="fa-puzzle-piece">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn" style="background:var(--light-gray); color:var(--dark);"
+                        onclick="app.closeModal('category-modal')">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Save Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="details-modal">
+        <div class="modal-content"
+            style="max-width: 800px; display: flex; flex-direction: row; gap: 30px; align-items: flex-start; position: relative;">
+            <button class="close-btn" style="position: absolute; top: 15px; right: 15px;"
+                onclick="app.closeModal('details-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <div style="flex: 1; border-radius: 16px; overflow: hidden; background: var(--light);">
+                <img id="detail-image" src="" alt=""
+                    style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 400px;">
+            </div>
+            <div style="flex: 1; padding: 10px 0;">
+                <span id="detail-category"
+                    style="color: var(--primary); font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Category</span>
+                <h2 id="detail-title"
+                    style="font-size: 28px; font-weight: 900; margin: 10px 0; color: var(--dark); line-height: 1.2;">
+                    Product Name</h2>
+                <div id="detail-price"
+                    style="font-size: 26px; color: var(--secondary); font-weight: 900; margin: 15px 0;">₹0</div>
+                <p style="color: var(--gray); font-size: 15px; margin-bottom: 25px; line-height: 1.6;">
+                    Enhance cognitive skills and creativity with this amazing developmental set. Specially curated for
+                    engaging, screen-free learning time!
+                </p>
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 20px;">
+                    <i class="fa-solid fa-truck-fast" style="color: var(--accent); font-size: 18px;"></i>
+                    <span style="font-size: 14px; font-weight: 700; color: var(--gray);">Fast Delivery within 3-5
+                        days</span>
+                </div>
+                <button id="detail-add-cart-btn" class="btn btn-primary"
+                    style="width: 100%; padding: 15px; font-size: 18px;" onclick="">
+                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @media (max-width: 768px) {
+            #details-modal .modal-content {
+                flex-direction: column !important;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-message">Success!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const INITIAL_CATEGORIES = [
+            { id: 'c1', name: 'Memory Builders', icon: 'fa-brain' },
+            { id: 'c2', name: 'Math Puzzles', icon: 'fa-calculator' },
+            { id: 'c3', name: 'Creative Blocks', icon: 'fa-cubes' },
+            { id: 'c4', name: 'Scientific Toys', icon: 'fa-flask' },
+            { id: 'c5', name: 'Logical Games', icon: 'fa-chess-knight' }
+        ];
+
+        const INITIAL_PRODUCTS = [
+            { id: 'p1', name: 'Color Matching Memory Chess', price: 599, categoryId: 'c1', image: 'https://images.unsplash.com/photo-1611604548018-d56bbd85d681?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+            { id: 'p2', name: 'Wooden Number Board', price: 349, categoryId: 'c2', image: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+            { id: 'p3', name: 'Magnetic Building Blocks set', price: 1299, categoryId: 'c3', image: 'https://plus.unsplash.com/premium_photo-1663045610664-de6e50772224?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+            { id: 'p4', name: 'Mini Science Lab Kit', price: 899, categoryId: 'c4', image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+            { id: 'p5', name: 'Rubiks Cubes 3x3 Speed', price: 299, categoryId: 'c5', image: 'https://images.unsplash.com/photo-1591991731833-b4807cf7ef94?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+            { id: 'p6', name: 'Shape Sorter Cube', price: 450, categoryId: 'c3', image: 'https://plus.unsplash.com/premium_photo-1681997380189-6de89a244abf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
+        ];
+
+        const app = {
+            data: {
+                categories: [],
+                products: [],
+                cart: [],
+                currentFilter: 'all'
+            },
+
+            init() {
+                this.loadData();
+                this.renderFrontendProducts();
+                this.renderAdminCategories();
+                this.renderAdminProducts();
+                this.updateCategoryDropdowns();
+                this.updateCartUI();
+
+                let heroImg = localStorage.getItem('kutty_hero_image');
+                if (!heroImg) {
+                    heroImg = "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                }
+                const heroEl = document.getElementById('hero-banner-img');
+                if (heroEl) heroEl.src = heroImg;
+                const adInput = document.getElementById('advertisement-url');
+                if (adInput) adInput.value = heroImg;
+
+                if (window.location.hash === '#admin') {
+                    this.navigate('admin');
+                }
+            },
+
+            loadData() {
+                const cats = localStorage.getItem('kutty_categories');
+                const prods = localStorage.getItem('kutty_products');
+                const cart = localStorage.getItem('kutty_cart');
+
+                if (!cats || !prods) {
+                    this.data.categories = [...INITIAL_CATEGORIES];
+                    this.data.products = [...INITIAL_PRODUCTS];
+                    this.saveData();
+                } else {
+                    this.data.categories = JSON.parse(cats);
+                    this.data.products = JSON.parse(prods);
+                }
+
+                if (cart) {
+                    this.data.cart = JSON.parse(cart);
+                }
+            },
+
+            saveData() {
+                localStorage.setItem('kutty_categories', JSON.stringify(this.data.categories));
+                localStorage.setItem('kutty_products', JSON.stringify(this.data.products));
+                localStorage.setItem('kutty_cart', JSON.stringify(this.data.cart));
+            },
+
+            // Cart Functions
+            openCart() {
+                document.getElementById('cart-drawer').classList.add('open');
+                document.getElementById('cart-overlay').classList.add('active');
+            },
+
+            closeCart() {
+                document.getElementById('cart-drawer').classList.remove('open');
+                document.getElementById('cart-overlay').classList.remove('active');
+            },
+
+            addToCart(productId) {
+                const product = this.data.products.find(p => p.id === productId);
+                if (!product) return;
+
+                const cartItem = this.data.cart.find(item => item.id === productId);
+                if (cartItem) {
+                    cartItem.qty++;
+                } else {
+                    this.data.cart.push({ ...product, qty: 1 });
+                }
+
+                this.saveData();
+                this.updateCartUI();
+                this.showToast(`Added ${product.name} to cart!`, 'success');
+
+                // Visual feedback on badge
+                const badge = document.getElementById('cart-badge');
+                badge.classList.remove('bounce');
+                void badge.offsetWidth; // trigger reflow
+                badge.classList.add('bounce');
+
+                // Briefly open cart for feedback
+                // this.openCart(); // optional, maybe too intrusive
+            },
+
+            changeQty(productId, delta) {
+                const cartItem = this.data.cart.find(item => item.id === productId);
+                if (!cartItem) return;
+
+                cartItem.qty += delta;
+                if (cartItem.qty <= 0) {
+                    this.data.cart = this.data.cart.filter(item => item.id !== productId);
+                }
+
+                this.saveData();
+                this.updateCartUI();
+            },
+
+            updateCartUI() {
+                const badge = document.getElementById('cart-badge');
+                const totalItems = this.data.cart.reduce((sum, item) => sum + item.qty, 0);
+                badge.textContent = totalItems;
+
+                const drawerBody = document.getElementById('cart-drawer-body');
+                const drawerFooter = document.getElementById('cart-drawer-footer');
+                const totalAmountEl = document.getElementById('cart-total');
+
+                if (this.data.cart.length === 0) {
+                    drawerBody.innerHTML = `
+                        <div class="cart-empty">
+                            <i class="fa-solid fa-cart-flatbed"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    drawerFooter.style.display = 'none';
+                    return;
+                }
+
+                drawerFooter.style.display = 'block';
+                let html = '';
+                let totalAmount = 0;
+
+                this.data.cart.forEach(item => {
+                    const price = Number(item.price);
+                    const itemTotal = price * item.qty;
+                    totalAmount += itemTotal;
+
+                    html += `
+                        <div class="cart-item">
+                            <img src="${item.image}" class="cart-item-img" alt="${item.name}">
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">₹${price}</div>
+                                <div class="cart-item-qty">
+                                    <button class="qty-btn" onclick="app.changeQty('${item.id}', -1)">-</button>
+                                    <span class="qty-num">${item.qty}</span>
+                                    <button class="qty-btn" onclick="app.changeQty('${item.id}', 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="cart-item-remove" onclick="app.changeQty('${item.id}', -${item.qty})">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+
+                drawerBody.innerHTML = html;
+                totalAmountEl.textContent = `₹${totalAmount}`;
+            },
+
+            checkoutWhatsApp() {
+                if (this.data.cart.length === 0) return;
+
+                const phone = '7012780209';
+                let message = `New Order from Kutty Minds!\n\n`;
+                let total = 0;
+
+                this.data.cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.qty;
+                    total += itemTotal;
+                    message += `${index + 1}. *${item.name}*\n`;
+                    message += `   Qty: ${item.qty} | Price: ₹${item.price}\n\n`;
+                });
+
+                message += `*Total Amount: ₹${total}*\n`;
+                message += `-------------------\n`;
+                message += `Please confirm my order.`;
+
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+                window.open(whatsappUrl, '_blank');
+            },
+
+            // Navigation
+            navigate(view) {
+                const home = document.getElementById('storefront-view');
+                const admin = document.getElementById('admin-view');
+                const links = document.querySelectorAll('.nav-link');
+
+                links.forEach(l => l.classList.remove('active'));
+
+                if (view === 'home') {
+                    home.classList.remove('hidden');
+                    admin.classList.add('hidden');
+                    links[0].classList.add('active');
+                } else if (view === 'admin') {
+                    home.classList.add('hidden');
+                    admin.classList.remove('hidden');
+                    this.renderAdminProducts();
+                    this.renderAdminCategories();
+                }
+            },
+
+            scrollToShop() {
+                this.navigate('home');
+                document.getElementById('shop-section').scrollIntoView({ behavior: 'smooth' });
+                document.querySelectorAll('.nav-link')[1].classList.add('active');
+            },
+
+            switchAdminTab(tab, el) {
+                document.querySelectorAll('.admin-menu-item').forEach(i => i.classList.remove('active'));
+                if (el) el.classList.add('active');
+
+                document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+                document.getElementById(`panel-${tab}`).classList.add('active');
+            },
+
+            saveAdvertisement() {
+                const url = document.getElementById('advertisement-url').value;
+                if (url) {
+                    localStorage.setItem('kutty_hero_image', url);
+                    const heroEl = document.getElementById('hero-banner-img');
+                    if (heroEl) heroEl.src = url;
+                    this.showToast('Advertisement photo updated successfully!', 'success');
+                } else {
+                    this.showToast('Please enter an image URL', 'error');
+                }
+            },
+
+            // Frontend Renders
+            renderFrontendProducts() {
+                const container = document.getElementById('frontend-products');
+                let filtered = this.data.products;
+
+                // Categories removed from frontend filter but logic kept for compatibility
+                if (this.data.currentFilter !== 'all') {
+                    filtered = filtered.filter(p => p.categoryId === this.data.currentFilter);
+                }
+
+                if (filtered.length === 0) {
+                    container.innerHTML = `<div class="empty-state"><i class="fa-solid fa-box-open"></i><h3>No toys found</h3><p>Try exploring our other collections!</p></div>`;
+                    return;
+                }
+
+                let html = '';
+                filtered.forEach(p => {
+                    html += `
+                        <div class="product-card">
+                            <div class="product-img" onclick="app.openProductDetails('${p.id}')">
+                                <img src="${p.image}" alt="${p.name}" />
+                            </div>
+                            <div class="product-info">
+                                <h3 style="cursor:pointer;" onclick="app.openProductDetails('${p.id}')">${p.name}</h3>
+                                <div class="product-bottom">
+                                    <div class="product-price">₹${p.price}</div>
+                                    <button class="add-cart-btn" onclick="app.addToCart('${p.id}')">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            },
+
+            // Admin Renders
+            renderAdminProducts() {
+                const tbody = document.getElementById('admin-products-table');
+                let html = '';
+                this.data.products.forEach(p => {
+                    const cat = this.data.categories.find(c => c.id === p.categoryId);
+                    html += `
+                        <tr>
+                            <td><img src="${p.image}" onerror="this.style.background='#eee'; this.style.opacity='0.5'"></td>
+                            <td>
+                                <div><strong>${p.name}</strong></div>
+                                <div style="font-size:12px; color:var(--gray)">ID: ${p.id}</div>
+                            </td>
+                            <td><span style="background:var(--light); padding:5px 10px; border-radius:10px; font-size:12px">${cat ? cat.name : 'Unknown'}</span></td>
+                            <td style="color:var(--primary); font-weight:900">₹${p.price}</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="btn-icon btn-edit" onclick="app.openModal('product-modal', 'edit', '${p.id}')"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-icon btn-delete" onclick="app.deleteProduct('${p.id}')"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = html;
+            },
+
+            renderAdminCategories() {
+                const tbody = document.getElementById('admin-categories-table');
+                let html = '';
+                this.data.categories.forEach(c => {
+                    html += `
+                        <tr>
+                            <td>
+                                <i class="fa-solid ${c.icon}" style="color:var(--secondary); font-size:20px; width:30px"></i> 
+                                <strong>${c.name}</strong>
+                            </td>
+                            <td><span style="background:var(--light); padding:5px 10px; border-radius:10px; font-size:12px">Category</span></td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="btn-icon btn-edit" onclick="app.openModal('category-modal', 'edit', '${c.id}')"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-icon btn-delete" onclick="app.deleteCategory('${c.id}')"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = html;
+            },
+
+            updateCategoryDropdowns() {
+                const select = document.getElementById('product-category');
+                select.innerHTML = '<option value="">Select Category...</option>' +
+                    this.data.categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+            },
+
+            // Modals
+            openModal(id, mode, itemId = null) {
+                const modal = document.getElementById(id);
+                const title = document.getElementById(`${id}-title`);
+                const form = document.getElementById(id.split('-')[0] + '-form');
+                form.reset();
+                document.getElementById(id.split('-')[0] + '-id').value = '';
+
+                if (id === 'product-modal') {
+                    title.textContent = mode === 'add' ? 'Add New Product' : 'Edit Product';
+                    if (mode === 'edit') {
+                        const p = this.data.products.find(x => x.id === itemId);
+                        if (p) {
+                            document.getElementById('product-id').value = p.id;
+                            document.getElementById('product-name').value = p.name;
+                            document.getElementById('product-price').value = p.price;
+                            document.getElementById('product-category').value = p.categoryId;
+                            document.getElementById('product-image').value = p.image;
+                        }
+                    }
+                } else if (id === 'category-modal') {
+                    title.textContent = mode === 'add' ? 'Add New Category' : 'Edit Category';
+                    if (mode === 'edit') {
+                        const c = this.data.categories.find(x => x.id === itemId);
+                        if (c) {
+                            document.getElementById('category-id').value = c.id;
+                            document.getElementById('category-name').value = c.name;
+                            document.getElementById('category-icon').value = c.icon;
+                        }
+                    }
+                }
+                modal.classList.add('active');
+            },
+
+            openProductDetails(id) {
+                const product = this.data.products.find(p => p.id === id);
+                if (!product) return;
+
+                const categoryItem = this.data.categories.find(c => c.id === product.categoryId);
+                const categoryName = categoryItem ? categoryItem.name : 'Toy';
+
+                document.getElementById('detail-image').src = product.image;
+                document.getElementById('detail-title').textContent = product.name;
+                document.getElementById('detail-price').textContent = `₹${product.price}`;
+                document.getElementById('detail-category').textContent = categoryName;
+
+                const addBtn = document.getElementById('detail-add-cart-btn');
+                addBtn.onclick = () => {
+                    this.addToCart(product.id);
+                    this.closeModal('details-modal');
+                };
+
+                document.getElementById('details-modal').classList.add('active');
+            },
+
+            closeModal(id) {
+                document.getElementById(id).classList.remove('active');
+            },
+
+            // CRUD Operations
+            saveProduct() {
+                const id = document.getElementById('product-id').value;
+                const p = {
+                    id: id || 'p' + Date.now(),
+                    name: document.getElementById('product-name').value,
+                    price: Number(document.getElementById('product-price').value),
+                    categoryId: document.getElementById('product-category').value,
+                    image: document.getElementById('product-image').value
+                };
+
+                if (id) {
+                    const idx = this.data.products.findIndex(x => x.id === id);
+                    this.data.products[idx] = p;
+                } else {
+                    this.data.products.push(p);
+                }
+
+                this.saveData();
+                this.closeModal('product-modal');
+                this.renderAdminProducts();
+                this.renderFrontendProducts();
+                this.showToast('Product saved completely!', 'success');
+            },
+
+            deleteProduct(id) {
+                if (confirm('Are you sure you want to delete this product?')) {
+                    this.data.products = this.data.products.filter(x => x.id !== id);
+                    this.saveData();
+                    this.renderAdminProducts();
+                    this.renderFrontendProducts();
+                    this.showToast('Product deleted!', 'success');
+                }
+            },
+
+            saveCategory() {
+                const id = document.getElementById('category-id').value;
+                const c = {
+                    id: id || 'c' + Date.now(),
+                    name: document.getElementById('category-name').value,
+                    icon: document.getElementById('category-icon').value || 'fa-tag'
+                };
+
+                if (id) {
+                    const idx = this.data.categories.findIndex(x => x.id === id);
+                    this.data.categories[idx] = c;
+                } else {
+                    this.data.categories.push(c);
+                }
+
+                this.saveData();
+                this.closeModal('category-modal');
+                this.renderAdminCategories();
+                this.updateCategoryDropdowns();
+                this.showToast('Category saved successfully!', 'success');
+            },
+
+            deleteCategory(id) {
+                if (this.data.products.some(p => p.categoryId === id)) {
+                    this.showToast('Cannot delete! Toys exist in this category.', 'error');
+                    return;
+                }
+
+                if (confirm('Are you sure you want to delete this category?')) {
+                    this.data.categories = this.data.categories.filter(x => x.id !== id);
+                    this.saveData();
+                    this.renderAdminCategories();
+                    this.updateCategoryDropdowns();
+                    this.showToast('Category deleted!', 'success');
+                }
+            },
+
+            // Toast
+            showToast(msg, type = 'success') {
+                const toast = document.getElementById('toast');
+                const icon = toast.querySelector('i');
+                document.getElementById('toast-message').textContent = msg;
+
+                if (type === 'error') {
+                    toast.classList.add('error');
+                    icon.className = 'fa-solid fa-circle-exclamation';
+                } else {
+                    toast.classList.remove('error');
+                    icon.className = 'fa-solid fa-circle-check';
+                }
+
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+        };
+
+        // Initialize when ready
+        document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+
+</html>
